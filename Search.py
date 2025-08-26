@@ -6,6 +6,8 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import spotipy
+from to_Spotify import CID, SECRET
+from to_Gemini import Gemini_Key
 from spotipy.oauth2 import SpotifyClientCredentials
 import google.generativeai as genai
 
@@ -48,14 +50,15 @@ class search:
         options.add_argument("--no-sandbox")
         options.add_argument("--remote-allow-origins=*")
         options.add_argument("--disable-features=WidevineCdm")
+        options.add_argument("--user-data-dir=D:\chromedriver-win64\Default")
         self.driver = webdriver.Chrome(options=options)
         
-        cid = 'YOUR_Spotify_API_CID'
-        secret = 'YOUR_Spotify_API_SECRET'
+        cid = CID
+        secret = SECRET
         client_credentials_manager = SpotifyClientCredentials(client_id=cid, client_secret=secret)
         self.sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 
-        genai.configure(api_key="YOUR_Gemini_API_KEY")
+        genai.configure(api_key=Gemini_Key)
         self.model = genai.GenerativeModel('gemini-1.5-flash')
 
     def useGemini(self, req):

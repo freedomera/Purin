@@ -2,7 +2,7 @@ from discord.ext import commands
 from discord.ui import Button
 from discord.utils import get
 from discord import FFmpegPCMAudio
-from Token import Token
+from to_Purin import Token
 from subprocess import Popen, PIPE, STDOUT
 from Playlist import Playlist
 from Search import search
